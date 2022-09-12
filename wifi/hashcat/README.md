@@ -14,11 +14,13 @@ So, given the requirements, we are going to first see the wireless adapter with
 
 # Steps
 
-Shut down all the services using the network adapter
+After installing hcxumptool, we're going to stop all services that are accessing the wifi network
 
 > sudo systemctl stop NetworkManager.service
 > sudo systemctl stop wpa_supplicant.service
 
-And then we need to let *hcxdumptool* scan all networks for information before we start hacking.
+> sudo hcxdumptool -i wlan0 -o dumpfile.pcapng --active_beacon --enable_status=1
 
-> sudo hcxdumptool -i
+
+
+> hcxpcapngtool -o hash.hc22000 -E essidlist dumpfile.pcapng
